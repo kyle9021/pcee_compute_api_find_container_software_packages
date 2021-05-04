@@ -47,7 +47,7 @@ curl \
 -X GET \
 -H "Authorization: Bearer "${pcee_compute_token}"" \
 -H 'Content-Type: application/json' \
-""${pcee_console_url}"/api/v1/images?limit="${pcc_api_limit}"&offset="${pcee_ofset}"" \
+""${pcee_console_url}"/api/v1/images?limit="${pcc_api_limit}"&offset="${pcee_offset}"" \
 | jq -r '.[] | {Repo: .repoTag.repo, Tag: .repoTag.tag, Package_name: .packages[]}' \
 | jq '.Repo, .Tag, .Package_name.pkgsType, .Package_name.pkgs' >> report.txt;
 done
