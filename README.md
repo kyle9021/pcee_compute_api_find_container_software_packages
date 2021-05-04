@@ -1,3 +1,9 @@
+# Assumptions
+
+* You're using PRISMA CLOUD ENTERPRISE EDTION
+* You're using an Ubuntu 20.04 VM to run this from
+* You understand how to harden this script for production environments
+
 # Instructions
 
 * Install jq `sudo apt-get install jq`
