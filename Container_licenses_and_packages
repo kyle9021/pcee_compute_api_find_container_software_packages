@@ -1,0 +1,53 @@
+#!/bin/bash
+# Written By Kyle Butler Prisma SE
+# Tested on 5.4.2021 on prisma_cloud_enterprise_edition using Ubuntu 20.04
+# Requres jq to be installed
+
+# Access key should be created in the Prisma Cloud Console under: Settings > Accesskeys
+# Place the access key and secret key between "<ACCESS_KEY>" marks, below
+pcee_accesskey="<PRISMA_ENTERPRISE_EDITION_ACCESS_KEY>"
+pcee_secretkey="<PRISMA_ENTERPRISE_EDITION_SECRET_KEY>"
+
+# This is found  in the Prisma Cloud Console under: Compute > Manage/System on the downloads tab under Path to Console
+pcee_console_url="https://<REGION>.cloud.twistlock.com/<REGION>"
+
+# This is found in the Prisma Cloud Console under: Compute >  Monitor > Vulnerabilies on the Images Tab. look for the total number of entries found near the
+# the right of the filter bar "?"
+pcee_compute_image_entries=150
+
+# Nothing below this line needs to be changed. I'll provide documentation so this can be customized for future usecases
+# This variable is to ensure the max api limit is set. No need to adjust.
+pcee_api_limit=50
+
+
+# This variable formats everything correctly so that the next variable can be assigned.
+pcee_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
+
+# This saves the auth token needed to access the CSPM side of the Prisma Cloud API to a variable $pcee_auth_token
+pcee_auth_token=$(curl --request POST \
+--url https://api.prismacloud.io/login \
+--header 'Accept: application/json; charset=UTF-8' \
+--header 'Content-Type: application/json; charset=UTF-8' \
+--data "${pcee_auth_body}" | jq -r '.token')
+
+# This variable formats everything correctly so that the next variable can be assigned.
+pcee_compute_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
+
+# This saves the auth token needed to access the CWPP side of the Prisma Cloud API to a variable $pcee_compute_token
+pcee_compute_token=$(curl \
+-H "Content-Type: application/json" \
+-d "${pcee_compute_auth_body}" \
+"${pcee_console_url}"/api/v1/authenticate | jq -r '.token')
+
+# Running a for loop using seq so that all images are reported on and the api limit is not exceeded;
+# This then uses jq to filter down to RepoTag name of the image, list the packages, and licenses;
+for pcee_offset in $(seq 0 "${pcee_api_limit}" "${pcee_compute_image_entries}");
+do \
+curl \
+-X GET \
+-H "Authorization: Bearer "${pcee_compute_token}"" \
+-H 'Content-Type: application/json' \
+""${pcee_console_url}"/api/v1/images?limit="${pcc_api_limit}"&offset="${pcee_ofset}"" \
+| jq -r '.[] | {Repo: .repoTag.repo, Tag: .repoTag.tag, Package_name: .packages[]}' \
+| jq '.Repo, .Tag, .Package_name.pkgsType, .Package_name.pkgs' >> report.txt;
+done
