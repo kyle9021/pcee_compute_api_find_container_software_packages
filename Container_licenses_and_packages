@@ -1,7 +1,7 @@
 #!/bin/bash
 # Written By Kyle Butler Prisma SE
 # Tested on 5.4.2021 on prisma_cloud_enterprise_edition using Ubuntu 20.04
-# Requres jq to be installed
+# Requires jq to be installed sudo apt-get install jq
 
 # Access key should be created in the Prisma Cloud Console under: Settings > Accesskeys
 # Place the access key and secret key between "<ACCESS_KEY>" marks, below
