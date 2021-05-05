@@ -8,7 +8,8 @@
 pcee_accesskey="<PRISMA_ENTERPRISE_EDITION_ACCESS_KEY>"
 pcee_secretkey="<PRISMA_ENTERPRISE_EDITION_SECRET_KEY>"
 
-# Name of the image package you're looking for, partial matches okay, and perl regex works too, case sensitive. 
+# Name of the software package you're looking for, partial matches okay, and perl regex works too, case sensitive.
+# Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab. 
 container_image_package_name="oracle"
 
 # This is found  in the Prisma Cloud Console under: Compute > Manage/System on the downloads tab under Path to Console
