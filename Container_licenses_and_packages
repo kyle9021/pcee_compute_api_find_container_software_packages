@@ -8,6 +8,9 @@
 pcee_accesskey="<PRISMA_ENTERPRISE_EDITION_ACCESS_KEY>"
 pcee_secretkey="<PRISMA_ENTERPRISE_EDITION_SECRET_KEY>"
 
+# Name of the image package you're looking for, partial matches okay, and perl regex works too, case sensitive. 
+container_image_package_name="oracle"
+
 # This is found  in the Prisma Cloud Console under: Compute > Manage/System on the downloads tab under Path to Console
 pcee_console_url="https://<REGION>.cloud.twistlock.com/<REGION>"
 
@@ -49,5 +52,5 @@ curl \
 -H 'Content-Type: application/json' \
 ""${pcee_console_url}"/api/v1/images?limit="${pcc_api_limit}"&offset="${pcee_offset}"" \
 | jq '.[] | {image: .instances[].image, packages: .packages[].pkgs[].name, license: .packages[].pkgs[].license, version: .packages[].pkgs[].version}' \
-| grep -P -A 2 -B 1 "(oracle|java|jre)" >> report.txt;
+| grep -P -A 2 -B 1 "${container_image_package_name}" >> report.txt;
 done
