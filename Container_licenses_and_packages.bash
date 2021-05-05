@@ -44,7 +44,7 @@ pcee_compute_token=$(curl \
 "${pcee_console_url}"/api/v1/authenticate | jq -r '.token')
 
 # Running a for loop using seq so that all images are reported on and the api limit is not exceeded;
-# This then uses jq to filter down to RepoTag name of the image, list the packages, and licenses;
+# This then uses jq to filter down to repository/path:tag, the package name, the license, and the version report get's appended to a file called report.txt;
 for pcee_offset in $(seq 0 "${pcee_api_limit}" "${pcee_compute_image_entries}");
 do \
 curl \
