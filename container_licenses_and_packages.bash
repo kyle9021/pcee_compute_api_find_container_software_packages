@@ -31,7 +31,7 @@ pcee_api_limit=50
 pcee_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
 
 # This saves the auth token needed to access the CSPM side of the Prisma Cloud API to a variable $pcee_auth_token
-pcee_auth_token=$(curl --request POST \
+pcee_auth_token=$(curl -s --request POST \
 --url https://"${pcee_console_api_url}"/login \
 --header 'Accept: application/json; charset=UTF-8' \
 --header 'Content-Type: application/json; charset=UTF-8' \
@@ -41,7 +41,7 @@ pcee_auth_token=$(curl --request POST \
 pcee_compute_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
 
 # This saves the auth token needed to access the CWPP side of the Prisma Cloud API to a variable $pcee_compute_token
-pcee_compute_token=$(curl \
+pcee_compute_token=$(curl -s \
 -H "Content-Type: application/json" \
 -d "${pcee_compute_auth_body}" \
 "${pcee_console_url}"/api/v1/authenticate | jq -r '.token')
@@ -50,7 +50,7 @@ pcee_compute_token=$(curl \
 # This then uses jq to filter down to repository/path:tag, the package name, the license, and the version report get's appended to a file called report.txt;
 for pcee_offset in $(seq 0 "${pcee_api_limit}" "${pcee_compute_image_entries}");
 do \
-curl \
+curl -s \
 -X GET \
 -H "Authorization: Bearer "${pcee_compute_token}"" \
 -H 'Content-Type: application/json' \
