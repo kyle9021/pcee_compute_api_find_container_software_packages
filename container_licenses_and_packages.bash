@@ -8,6 +8,9 @@
 pcee_accesskey="<PRISMA_ENTERPRISE_EDITION_ACCESS_KEY>"
 pcee_secretkey="<PRISMA_ENTERPRISE_EDITION_SECRET_KEY>"
 
+# Found on https://prisma.pan.dev/api/cloud/api-urls, replace value below if it doesn't fit your environment. 
+pcee_console_api_url="api.prismacloud.io"
+
 # Name of the software package you're looking for, partial matches okay, and perl regex works too, case sensitive.
 # Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab. 
 container_image_package_name="oracle"
@@ -29,7 +32,7 @@ pcee_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_se
 
 # This saves the auth token needed to access the CSPM side of the Prisma Cloud API to a variable $pcee_auth_token
 pcee_auth_token=$(curl --request POST \
---url https://api.prismacloud.io/login \
+--url https://"${pcee_console_api_url}"/login \
 --header 'Accept: application/json; charset=UTF-8' \
 --header 'Content-Type: application/json; charset=UTF-8' \
 --data "${pcee_auth_body}" | jq -r '.token')
