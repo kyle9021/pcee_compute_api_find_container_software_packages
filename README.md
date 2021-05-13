@@ -8,16 +8,16 @@
   
 * If you do decide to keep the keys in this script, then it's critical you:
   
-   * Add it to your `.gitignore` file and `chmod 700 container_licenses_and_packages.bash` so that others can't read, write, or excute it. 
+   * Add it to your `.gitignore` file and `chmod 700 container_licenses_and_packages.bash` between steps 3 and 4 so that others can't read, write, or excute it. 
 
 # Instructions
 
-* Install jq `sudo apt-get install jq`
-* `git clone https://github.com/Kyle9021/prisma_cloud_enterprise_api_scripts/`
-* `cd prisma_cloud_enterpise_api_scripts/`
-*  `nano container_licenses_and_packages.bash` and fill in the variables with the correct data from your console. 
-*  `bash container_licenses_and_packages.bash`
-*  `ls` to see your report
+* Step 1: Install jq `sudo apt-get install jq`
+* Step 2: `git clone https://github.com/Kyle9021/prisma_cloud_enterprise_api_scripts/`
+* Step 3: `cd prisma_cloud_enterpise_api_scripts/`
+* Step 4: `nano container_licenses_and_packages.bash` and fill in the variables with the correct data from your console. 
+* Step 5: `bash container_licenses_and_packages.bash`
+* Step 6: `ls` to see your report
 
 # Links to reference
 
