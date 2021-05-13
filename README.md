@@ -3,7 +3,12 @@
 * You're using PRISMA CLOUD ENTERPRISE EDTION
 * You're using an Ubuntu 20.04 VM to run this from
 * You understand how to harden this script for production environments
+
   * The biggest suggestion here is to not save the script with your secret key and access key in it. A better way to do this might be to have a seperate script which exports those credentials as environmental variables. My goal with this script is to simplify the process for those who are learning to work with the Prisma Cloud Enterprise Edition API. 
+  
+* If you do decide to keep the keys in this script, then it's critical you:
+  
+   * Add it to your `.gitignore` file and `chmod 700 container_licenses_and_packages.bash` so that others can't read, write, or excute it. 
 
 # Instructions
 
