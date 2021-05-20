@@ -28,23 +28,23 @@ pcee_api_limit=50
 
 
 # This variable formats everything correctly so that the next variable can be assigned.
-pcee_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
+pcee_auth_body="{\"username\":\"${pcee_accesskey}\", \"password\":\"${pcee_secretkey}\"}"
 
 # This saves the auth token needed to access the CSPM side of the Prisma Cloud API to a variable $pcee_auth_token
 pcee_auth_token=$(curl -s --request POST \
---url https://"${pcee_console_api_url}"/login \
+--url "https://${pcee_console_api_url}/login" \
 --header 'Accept: application/json; charset=UTF-8' \
 --header 'Content-Type: application/json; charset=UTF-8' \
 --data "${pcee_auth_body}" | jq -r '.token')
 
 # This variable formats everything correctly so that the next variable can be assigned.
-pcee_compute_auth_body="{\"username\":\""${pcee_accesskey}"\", \"password\":\""${pcee_secretkey}"\"}"
+pcee_compute_auth_body="{\"username\":\"${pcee_accesskey}\", \"password\":\"${pcee_secretkey}\"}"
 
 # This saves the auth token needed to access the CWPP side of the Prisma Cloud API to a variable $pcee_compute_token
 pcee_compute_token=$(curl -s \
 -H "Content-Type: application/json" \
 -d "${pcee_compute_auth_body}" \
-"${pcee_console_url}"/api/v1/authenticate | jq -r '.token')
+"${pcee_console_url}/api/v1/authenticate" | jq -r '.token')
 
 # Running a for loop using seq so that all images are reported on and the api limit is not exceeded;
 # This then uses jq to filter down to repository/path:tag, the package name, the license, and the version report get's appended to a file called report.txt;
@@ -52,9 +52,9 @@ for pcee_offset in $(seq 0 "${pcee_api_limit}" "${pcee_compute_image_entries}");
 do \
 curl -s \
 -X GET \
--H "Authorization: Bearer "${pcee_compute_token}"" \
+-H "Authorization: Bearer ${pcee_compute_token}" \
 -H 'Content-Type: application/json' \
-""${pcee_console_url}"/api/v1/images?limit="${pcc_api_limit}"&offset="${pcee_offset}"" \
+"${pcee_console_url}/api/v1/images?limit=${pcc_api_limit}&offset=${pcee_offset}" \
 | jq '.[] | {image: .instances[].image, packages: .packages[].pkgs[].name, license: .packages[].pkgs[].license, version: .packages[].pkgs[].version}' \
 | grep -P -A 2 -B 1 "${container_image_package_name}" >> report.txt;
 done
