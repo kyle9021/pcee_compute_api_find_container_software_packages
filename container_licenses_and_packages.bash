@@ -54,7 +54,7 @@ curl -s \
 -X GET \
 -H "Authorization: Bearer ${pcee_compute_token}" \
 -H 'Content-Type: application/json' \
-"${pcee_console_url}/api/v1/images?limit=${pcc_api_limit}&offset=${pcee_offset}" \
+"${pcee_console_url}/api/v1/images?limit=${pcee_api_limit}&offset=${pcee_offset}" \
 | jq '.[] | {image: .instances[].image, packages: .packages[].pkgs[].name, license: .packages[].pkgs[].license, version: .packages[].pkgs[].version}' \
 | grep -P -A 2 -B 1 "${container_image_package_name}" >> report.txt;
 done
