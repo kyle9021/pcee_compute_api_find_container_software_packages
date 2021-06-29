@@ -44,15 +44,6 @@ fi
 
 # debugging to ensure the variables are assigned correctly not required
 
-if [ ! -n "$pcee_console_api_url" ] || [ ! -n "$pcee_secretkey" ] || [ ! -n "$pcee_accesskey" ]; then
-  echo "pcee_console_api_url or pcee_accesskey or pcee_secret key came up null";
-  exit;
-fi
-
-if [[ ! $pcee_console_api_url =~ ^(\"\')?https\:\/\/api[2-3]?\.prismacloud\.io(\"|\')?$ ]]; then
-  echo "pcee_console_api_url variable isn't formatted or assigned correctly";
-  exit;
-fi
 
 if [[ ! $pcee_accesskey =~ ^.{35,40}$ ]]; then
   echo "check the pcee_accesskey variable because it doesn't appear to be the correct length";
@@ -95,7 +86,7 @@ pcee_container_package_info=$(for pcee_offset in $(seq 0 ${pcee_compute_api_limi
              --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}";
         done)
 
-pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"| jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' | jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' | jq '[{(.image_name): .package_info[]}]' | grep -P -B 2 -A 1 "${pcee_package}")
+pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"| jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' | jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' | jq '[{(.image_name): .package_info[]}]' | grep -P -B 2 -A 2 "${pcee_package}")
 
 
 echo "${pcee_images_with_packages}"
