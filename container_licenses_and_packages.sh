@@ -36,7 +36,7 @@ pcee_auth_body_single="
 
 pcee_auth_body="${pcee_auth_body_single//\'/\"}"
 
-# debugging to ensure jq and cowsay are installed
+# debugging to ensure jq is installed
 
 if ! type "jq" > /dev/null; then
   error_and_exit "jq not installed or not in execution path, jq is required for script execution."
