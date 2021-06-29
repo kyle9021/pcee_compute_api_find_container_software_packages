@@ -25,7 +25,7 @@ pcee_secretkey="<PRISMA_ENTERPRISE_EDTION_SECRET_KEY>"
 # Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
 echo "enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
 echo "found in the compute console under: compute > vulnerabilities on the image tab"
-read pcee_package;
+read -r pcee_package;
 
 
 pcee_auth_body_single="
@@ -58,7 +58,7 @@ fi
 
 
 
-pcee_compute_token=$(curl -s \
+pcee_compute_token=$(curl \
                           --url "${pcee_compute_api_url}/api/v1/authenticate" \
                           --header 'Content-Type: application/json; charset=UTF-8' \
                           --data "${pcee_auth_body}" | jq -r '.token')
@@ -91,7 +91,7 @@ pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"| jq '[.[]
 
 echo "${pcee_images_with_packages}"
 
-printf %s "${pcee_images_with_packages}" > "$(echo $(date  +%m_%d_%y))_container_images_with_${pcee_package}.txt"
+printf %s "${pcee_images_with_packages}" > "$(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
 
 
-echo "report saved in this directory as $(echo $(date  +%m_%d_%y))_container_images_with_${pcee_package}.txt"
+echo "report saved in this directory as $(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
