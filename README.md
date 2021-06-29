@@ -13,10 +13,10 @@
 # Instructions
 
 * Step 1: Install jq `sudo apt-get install jq`
-* Step 2: `git clone https://github.com/Kyle9021/prisma_cloud_enterprise_api_scripts/`
-* Step 3: `cd prisma_cloud_enterpise_api_scripts/`
-* Step 4: `nano container_licenses_and_packages.bash` and fill in the variables with the correct data from your console. 
-* Step 5: `bash container_licenses_and_packages.bash`
+* Step 2: `git clone https://github.com/Kyle9021/pcee_compute_api_find_container_software_packages`
+* Step 3: `cd pcee_compute_api_find_container_software_packages/`
+* Step 4: `nano container_licenses_and_packages.sh` and fill in the variables with the correct data from your console. 
+* Step 5: `bash container_licenses_and_packages.sh`
 * Step 6: `ls` to see your report
 
 # Links to reference
