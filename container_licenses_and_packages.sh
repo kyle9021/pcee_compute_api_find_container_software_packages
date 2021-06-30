@@ -149,3 +149,4 @@ printf %s "${pcee_images_with_packages}" > "$(date  +%m_%d_%y)_container_images_
 
 
 echo "report saved in this directory as $(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
+exit
