@@ -128,11 +128,6 @@ pcee_compute_token=$(curl \
                           --data "${pcee_auth_body}" | jq -r '.token')
 
 
-pcee_compute_container_count=$(curl -s -X GET \
-     -H "Authorization: Bearer ${pcee_compute_token}" \
-     -H 'Content-Type: application/json' \
-     --url "${pcee_compute_api_url}/api/v1/containers/count")
-
 if [ -z "${pcee_compute_token}" ]; then
 	echo
 	echo -e "\033[32mauth token not recieved, recommending you check your variable assignment\033[0m";
@@ -143,6 +138,11 @@ else
 	echo "auth token recieved"
 	echo
 fi
+
+pcee_compute_container_count=$(curl -s -X GET \
+     -H "Authorization: Bearer ${pcee_compute_token}" \
+     -H 'Content-Type: application/json' \
+     --url "${pcee_compute_api_url}/api/v1/containers/count")
 
 
 
