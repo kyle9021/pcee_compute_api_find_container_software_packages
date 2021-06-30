@@ -15,6 +15,7 @@
 # Only variable(s) needing to be assigned by the end-user
 # Found under compute > system > Utilities > path to Console should look like: https://region.cloud.twistlock.com/region-account
 
+
 pcee_compute_api_url="https://<REGION>.cloud.twistlock.com/<REGION>"
 # Create access keys in the Prisma Cloud Enterprise Edition Console
 # Example of a better way: pcee_console_api_url=$(vault kv get -format=json <secret/path> | jq -r '.<resources>')
@@ -23,8 +24,8 @@ pcee_secretkey="<PRISMA_ENTERPRISE_EDTION_SECRET_KEY>"
 
 
 # Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
-echo "enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
-echo "found in the compute console under: compute > vulnerabilities on the image tab"
+echo "Enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
+echo "Found in the compute console under: compute > vulnerabilities on the image tab"
 read -r pcee_package;
 
 
@@ -82,6 +83,10 @@ echo "                                                  "
 echo "                                                  "
 
 
+
+
+
+
 pcee_auth_body_single="
 {
  'username':'${pcee_accesskey}', 
@@ -97,7 +102,12 @@ if ! type "jq" > /dev/null; then
 fi
 
 # debugging to ensure the variables are assigned correctly not required
-
+if [[ ! $pcee_compute_api_url =~ https.*twistlock.com.* ]]; then
+  echo;
+  echo "pcee_console_api_url variable isn't formatted or assigned correctly; it should look like: https://<region>.twistlock.com/<region>";
+  echo;
+  exit;
+fi
 
 if [[ ! $pcee_accesskey =~ ^.{35,40}$ ]]; then
   echo "check the pcee_accesskey variable because it doesn't appear to be the correct length";
@@ -123,12 +133,18 @@ pcee_compute_container_count=$(curl -s -X GET \
      -H 'Content-Type: application/json' \
      --url "${pcee_compute_api_url}/api/v1/containers/count")
 
-if [[ $(printf %s "${pcee_auth_token}") == null ]]; then
-  echo "auth token not given; check your access key and secret key variables; also, check the expiration date in the prisma cloud console";
-  exit;
+if [ -z "${pcee_compute_token}" ]; then
+	echo
+	echo -e "\033[32mauth token not recieved, recommending you check your variable assignment\033[0m";
+	echo
+	exit;
 else
-  echo "token recieved";
+	echo
+	echo "auth token recieved"
+	echo
 fi
+
+
 
 pcee_compute_api_limit=50
 
@@ -146,7 +162,8 @@ pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"| jq '[.[]
 echo "${pcee_images_with_packages}"
 
 printf %s "${pcee_images_with_packages}" > "$(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
+echo
+echo "report saved in this directory: $PWD as: $(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
+echo
 
-
-echo "report saved in this directory as $(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
 exit
