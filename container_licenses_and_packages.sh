@@ -24,7 +24,7 @@ pcee_secretkey="<PRISMA_ENTERPRISE_EDTION_SECRET_KEY>"
 
 
 # Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
-echo "Enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
+echo "Enter the name of the software package you're looking for, partial matches okay, and perl regex works too, not case-sensitive"
 echo "Found in the compute console under: compute > vulnerabilities on the image tab"
 read -r pcee_package;
 
@@ -156,7 +156,7 @@ pcee_container_package_info=$(for pcee_offset in $(seq 0 ${pcee_compute_api_limi
              --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}";
         done)
 
-pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"| jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' | jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' | jq '[{(.image_name): .package_info[]}]' | grep -P -B 2 -A 2 "${pcee_package}")
+pcee_images_with_packages=$(printf %s "${pcee_container_package_info}"\| jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' | jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' | jq '[{(.image_name): .package_info[]}]' | grep -i -P -B 2 -A 2 "${pcee_package}")
 
 
 echo "${pcee_images_with_packages}"
