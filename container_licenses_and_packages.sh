@@ -25,7 +25,7 @@ pcee_secretkey="<PRISMA_ENTERPRISE_EDTION_SECRET_KEY>"
 
 # Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
 echo "Enter the name of the software package you're looking for, partial matches okay, and perl regex works too, not case-sensitive"
-echo "Found in the compute console under: compute > vulnerabilities on the image tab"
+echo "Found in the compute console under: compute > vulnerabilities on the image tab; click the image and then go to the Package Info tab"
 read -r pcee_package;
 
 
