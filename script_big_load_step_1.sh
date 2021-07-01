@@ -134,4 +134,4 @@ for pcee_offset in $(seq 0 ${pcee_compute_api_limit} ${pcee_compute_container_co
              --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}" >> temp.json ;
         done
 
-bash script_big_load_step_2.sh
+bash ./script_big_load_step_2.sh
