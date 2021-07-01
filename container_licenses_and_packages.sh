@@ -31,6 +31,12 @@ read -r pcee_package;
 
 # No edits needed below this line
 
+error_and_exit() {
+  echo
+  echo "ERROR: ${1}"
+  echo
+  exit 1
+}
 # Because ASCII is awesome
 
 
