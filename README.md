@@ -24,7 +24,16 @@
 
 ## Script_big_load.sh instructions and explaination:
 
-I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in memory. 4,500 containers...etc. So I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file in a new report. A few things to note. A) it's not a good practice to read and write from the same file in the same process. So ideally, I'll need to break this up into two scripts. The Instructions are largely the same, and after working with the customer. I can confirm it's doing what it was designed to do quickly. I'll update it in the next few days, but wanted to leave this note in case anyone is looking around or working with a client who has deployed the software to production. 
+I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in memory. 4,500 containers...etc. So I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report. 
+
+A few things to note:
+
+A) It's not a good practice to read and write from the same file in the same process. - I'm aware
+B) The instructions are the same, just different names for scripts. 
+C) Either scripts will do the function they were designed to do...choose the scipt_big_loadl.sh for production envs.
+
+
+So ideally, I'll need to break this up into two scripts. I'll update it in the next few days, but wanted to leave this note in case anyone is looking around or working with a client who has deployed the software to production. 
 
 # Links to reference
 
