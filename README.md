@@ -22,9 +22,9 @@
 * Step 6: `ls` to see your report
 
 
-## Script_big_load.sh instructions and explaination:
+## script_big_load_1.sh instructions and explaination:
 
-I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in memory. 4,500 containers...etc. So I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report. 
+I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in memory. 4,500 containers...etc. So as a stop-gap I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report. It's also worth mentioning that a more experienced engineer Tom Kishel from PANW has a python script which servers a similar function located in his repo [pc-toolbox](https://github.com/tkishel/pc-toolbox). I haven't tried it yet, but if it's anything like his other work; it won't disappoint. The downside is you'll need to understand working with venv and python libraries. I'll keep this here for those not wanting to go there. 
 
 ### Instructions
 
