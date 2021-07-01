@@ -29,7 +29,9 @@ I wrote the frist script using the demo environment I had access to. Unfortunate
 A few things to note:
 
 A) It's not a good practice to read and write from the same file in the same process. - I'm aware
+
 B) The instructions are the same, just different names for scripts. 
+
 C) Either scripts will do the function they were designed to do...choose the scipt_big_loadl.sh for production envs.
 
 
