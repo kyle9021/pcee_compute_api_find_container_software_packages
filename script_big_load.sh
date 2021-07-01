@@ -128,22 +128,16 @@ pcee_compute_api_limit=50
 
 
 for pcee_offset in $(seq 0 ${pcee_compute_api_limit} ${pcee_compute_container_count}); do \
-        curl -s -X GET \
+        curl -X GET \
              -H "Authorization: Bearer ${pcee_compute_token}" \
              -H 'Content-Type: application/json' \
              --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}" >> temp.json ;
         done
 
-printf %s "${pcee_container_package_info}"\
-	                  | jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' \
-			  | jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' \
-			  | jq '[{(.image_name): .package_info[]}]' \
-			  | grep -i -P -B 2 -A 2 "${pcee_package}"
-
-
-echo "${pcee_images_with_packages}"
-
-printf %s "${pcee_images_with_packages}" > "$(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
+cat temp.json | jq '[.[] |{image_name: .instances[].image, package_info: .packages[].pkgs[]}]' \
+| jq 'group_by(.image_name)[] | {image_name: .[0].image_name, package_info: [.[].package_info | {package_name: .name,version: .version,license: .license }]}' \
+| jq '[{(.image_name): .package_info[]}]' \
+| grep -i -P -B 2 -A 2 "${pcee_package}" > "$(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
 
 
 echo "report saved in this directory as $(date  +%m_%d_%y)_container_images_with_${pcee_package}.txt"
