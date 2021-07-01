@@ -32,7 +32,7 @@ A) It's not a good practice to read and write from the same file in the same pro
 
 B) The instructions are the same, just different names for scripts. 
 
-C) Either scripts will do the function they were designed to do...choose the scipt_big_loadl.sh for production envs.
+C) Either scripts will do the function they were designed to do...choose the scipt_big_load.sh for production envs.
 
 
 So ideally, I'll need to break this up into two scripts. I'll update it in the next few days, but wanted to leave this note in case anyone is looking around or working with a client who has deployed the software to production. 
