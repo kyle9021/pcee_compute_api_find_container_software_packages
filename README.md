@@ -26,16 +26,14 @@
 
 I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in memory. 4,500 containers...etc. So I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report. 
 
-A few things to note:
+### Instructions
 
-A) It's not a good practice to read and write from the same file in the same process. - I'm aware
-
-B) The instructions are the same, just different names for scripts. 
-
-C) Either scripts will do the function they were designed to do...choose the scipt_big_load.sh for production envs.
-
-
-So ideally, I'll need to break this up into two scripts. I'll update it in the next few days, but wanted to leave this note in case anyone is looking around or working with a client who has deployed the software to production. 
+* Step 1: Install jq `sudo apt-get install jq`
+* Step 2: `git clone https://github.com/Kyle9021/pcee_compute_api_find_container_software_packages`
+* Step 3: `cd pcee_compute_api_find_container_software_packages/`
+* Step 4: `nano scipt_big_load_step_1.sh` and fill in the variables with the correct data from your console. 
+* Step 5: `bash script_big_load_step_1.sh`
+* Step 6: The first script calls the second one and assuming you keep this all in the same directory you won't have any issues. I'll think of a more elegant way to do this later. Thanks!
 
 # Links to reference
 
