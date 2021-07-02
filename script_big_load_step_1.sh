@@ -127,7 +127,7 @@ for pcee_offset in $(seq 0 ${pcee_compute_api_limit} ${pcee_compute_container_co
         curl -X GET \
              -H "Authorization: Bearer ${pcee_compute_token}" \
              -H 'Content-Type: application/json' \
-             --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}" >> temp.json ;
+             --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}" >> ./temp.json ;
         done
 
 
