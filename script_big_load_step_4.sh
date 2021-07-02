@@ -13,6 +13,7 @@ rm ./report_$(date  +%m_%d_%y).csv
 
 
 echo
-echo "your report is in this directory named: report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv; open with excel and delete the report with all the packages" 
+echo "Your report is in this directory named: report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv; open with excel and delete the report with all the packages" 
+echo "Or you could run step 4 again to find additional software packages"
 echo
 exit
