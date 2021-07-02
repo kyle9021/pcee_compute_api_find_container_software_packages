@@ -163,6 +163,6 @@ printf %s "${pcee_container_package_info}" | jq '[.[] | {image_name: .instances[
 
 
 
-bash ./script_big_load_step_2.sh
+bash ./script_big_load_step_3.sh
 
 exit
