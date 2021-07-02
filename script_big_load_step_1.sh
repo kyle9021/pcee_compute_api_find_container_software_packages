@@ -23,10 +23,6 @@ pcee_accesskey="<access_key>"
 pcee_secretkey="<secret_key>"
 
 
-# Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
-echo "enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
-echo "found in the compute console under: compute > vulnerabilities on the image tab"
-read -r pcee_package;
 
 # Because you need to be able to represent
 echo "                                                  "
@@ -134,5 +130,5 @@ for pcee_offset in $(seq 0 ${pcee_compute_api_limit} ${pcee_compute_container_co
              --url "${pcee_compute_api_url}/api/v1/images?limit=${pcee_compute_api_limit}&offset=${pcee_offset}" >> temp.json ;
         done
 
-export ${pcee_package}
+
 bash ./script_big_load_step_2.sh
