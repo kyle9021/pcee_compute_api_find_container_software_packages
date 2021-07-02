@@ -11,7 +11,7 @@ cat ./temp_report_$(date  +%m_%d_%y).csv | awk -v pcee_awk_var="$pcee_package" -
 
 rm ./report_$(date  +%m_%d_%y).csv
 
-
+bash ./script_big_load_final_clean.sh
 echo
 echo "your report is in this directory named: report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv; open with excel and delete the report with all the packages" 
 echo
