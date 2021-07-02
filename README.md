@@ -26,7 +26,7 @@
 
 # script_big_load_1.sh: Instructions and Explaination:
 
-I wrote the frist script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in-memory. 4,500 containers...etc. So as a stop-gap I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report in csv format. Bottom line: if you're doing a demo. Use the first script I created if you'd like, but if it's for actual production. I'd strongly recommend the script_big_load.sh version. 
+I wrote the first script using the demo environment I had access to. Unfortunately, after working with a customer I soon realized the issues with keeping all the data in-memory. 4,500 containers...etc. So as a stop-gap I wrote a second version of the script which dumps all the data to a temp.json file and then parses through that file and outputs it to a new report in csv format. Bottom line: if you're doing a demo. Use the first script I created if you'd like, but if it's for actual production. I'd strongly recommend the script_big_load.sh version. 
 
 It's also worth mentioning that a more experienced engineer Tom Kishel, from PANW, created a python script which servers a similar function located in his repo [pc-toolbox](https://github.com/tkishel/pc-toolbox). I haven't tried it yet, but if it's anything like his other work; it won't disappoint. The downside is you'll need to understand working with venv and python libraries. I'll keep this here for those not wanting to go there. 
 
