@@ -32,7 +32,7 @@ It's also worth mentioning that a more experienced engineer Tom Kishel, from PAN
 
 Requirements: 
 
-- For more than 1000 containers you'll need a machine with at least 8 GBs of RAM and to be on the safe side 5-10 GBs of HDD space free. 
+For more than 1000 containers you'll need a machine with at least 8 GBs of RAM and to be on the safe side 5-10 GBs of HDD space free. 
 
 * Step 1: Install jq `sudo apt-get install jq`
 * Step 2: `git clone https://github.com/Kyle9021/pcee_compute_api_find_container_software_packages`
