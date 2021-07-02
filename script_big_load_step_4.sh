@@ -5,7 +5,8 @@ echo "Enter the name of the software package you're looking for, partial matches
 echo "Found in the compute console under: compute > vulnerabilities on the image tab"
 read -r pcee_package;
 
-awk -v pcee_package="${pcee_package}" -F, '$2 ~/pcee_package/ {print}' ./temp_report_$(date  +%m_%d_%y).csv > ./report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv
+cat ./temp_report_$(date  +%m_%d_%y).csv | awk -v pcee_awk_var="$pcee_package" -F, '$2 $0~pcee_awk_var {print}' > ./report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv
+
 
 
 rm ./report_$(date  +%m_%d_%y).csv
