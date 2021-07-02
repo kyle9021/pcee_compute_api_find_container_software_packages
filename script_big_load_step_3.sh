@@ -5,6 +5,6 @@ cat ./report_$(date  +%m_%d_%y).csv | awk 'NR == 1 || NR % 2 == 0' > temp_report
 
 # time to clean
 
-rm temp.json
+rm ./temp.json
 
 exit
