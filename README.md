@@ -5,7 +5,7 @@
 # Assumptions
 
 * You're using PRISMA CLOUD ENTERPRISE EDTION
-* You're using an Ubuntu 20.04 VM to run this from
+* You're using a LINUX DISTRO to run this from, (giving instructions for debian distros with apt)
 * You understand how to harden this script for production environments
 
   * The biggest suggestion here is to not save the script with your secret key and access key in it. A better way to do this might be to have a seperate script which exports those credentials as environmental variables. My goal with this script is to simplify the process for those who are learning to work with the Prisma Cloud Enterprise Edition API. 
@@ -14,14 +14,14 @@
   
    * Add it to your `.gitignore` (if using git) file and `chmod 700 container_licenses_and_packages.bash` between steps 3 and 4 so that others can't read, write, or excute it. 
 
-# Instructions
+# Instructions - UPDATED ADDED OUTPUT TO CSV
 
 * Step 1: Install jq `sudo apt-get install jq`
 * Step 2: `git clone https://github.com/Kyle9021/pcee_compute_api_find_container_software_packages`
 * Step 3: `cd pcee_compute_api_find_container_software_packages/`
 * Step 4: `nano container_licenses_and_packages.sh` and fill in the variables with the correct data from your console. 
 * Step 5: `bash container_licenses_and_packages.sh`
-* Step 6: `ls` to see your report
+* Step 6: At the end you'll have two reports. One that starts with temp, other one should have the software packages you were looking for. It'll be in csv format; and if you want to look for additional packages in your "temp_report" then `bash script_big_load_step_4.sh`, since you'll already have the data pulled down. HAPPY hunting!!!
 
 
 ## script_big_load_1.sh instructions and explaination:
@@ -35,7 +35,7 @@ I wrote the frist script using the demo environment I had access to. Unfortunate
 * Step 3: `cd pcee_compute_api_find_container_software_packages/`
 * Step 4: `nano scipt_big_load_step_1.sh` and fill in the variables with the correct data from your console. 
 * Step 5: `bash script_big_load_step_1.sh`
-* Step 6: The first script calls the second one and assuming you keep this all in the same directory you won't have any issues. I'll think of a more elegant way to do this later. Thanks!
+* Step 6: The first script calls the second one, the second one calls the third one, and so forth. Assuming you keep this all in the same directory you won't have any issues. I'll think of a more elegant way to do this later. Thanks!
 
 # Links to reference
 
