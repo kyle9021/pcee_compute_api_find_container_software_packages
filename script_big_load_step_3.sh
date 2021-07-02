@@ -7,4 +7,6 @@ cat ./report_$(date  +%m_%d_%y).csv | awk 'NR == 1 || NR % 2 == 0' > temp_report
 
 rm ./temp.json
 
+bash ./script_big_load_step_4.sh
+
 exit
