@@ -30,7 +30,9 @@ I wrote the frist script using the demo environment I had access to. Unfortunate
 
 It's also worth mentioning that a more experienced engineer Tom Kishel, from PANW, created a python script which servers a similar function located in his repo [pc-toolbox](https://github.com/tkishel/pc-toolbox). I haven't tried it yet, but if it's anything like his other work; it won't disappoint. The downside is you'll need to understand working with venv and python libraries. I'll keep this here for those not wanting to go there. 
 
-### Instructions
+Requirements: 
+
+- For more than 1000 containers you'll need a machine with at least 8 GBs of RAM and to be on the safe side 5-10 GBs of HDD space free. 
 
 * Step 1: Install jq `sudo apt-get install jq`
 * Step 2: `git clone https://github.com/Kyle9021/pcee_compute_api_find_container_software_packages`
