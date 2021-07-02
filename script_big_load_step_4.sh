@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "okay now enter the package you'd like to find"
+# Found in the Prisma Console Under: Compute > Vulnerabilities on the image tab; click the image and then go to the Package Info tab
+echo "enter the name of the software package you're looking for, partial matches okay, and perl regex works too, CASE-SENSITIVE"
+echo "found in the compute console under: compute > vulnerabilities on the image tab"
 read -r pcee_package;
 
 awk -v pcee_package="${pcee_package}" -F, '$2 ~/pcee_package/ {print}' ./temp_report_$(date  +%m_%d_%y).csv > ./report_$(date  +%m_%d_%y)_containers_with_${pcee_package}.csv
